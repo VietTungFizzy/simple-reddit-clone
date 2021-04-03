@@ -1,0 +1,21 @@
+<%= form_for @community do |f| %>
+  <div>
+    <h5>Create a new Community</h5>
+  </div>
+  <% if flash[:notice] %>
+    <p class="font-weight-bold text-danger"><%= flash[:notice] %></p>
+  <% end %>
+  <div class="form-group">
+    <%= label_tag :name, "Name", class: "h5" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :url, "URL", class: "h5" %>
+    <%= f.text_field :url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :rules, "Rules", class: "h5" %>
+    <%= f.text_area :rules, class: "form-control" %>
+  </div>
+  <%= f.submit "Create" %>
+<% end %>

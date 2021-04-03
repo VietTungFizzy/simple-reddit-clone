@@ -1,0 +1,17 @@
+<div class="container mt-3 border-bottom">
+  <div class="row justify-content-between py-2">
+    <div class="col-sm-4">
+      <%= link_to "Reddit Clone", root_path, class: "h3" %>
+    </div>
+    <div class="col-sm-4">
+      <div class="float-right">
+        <% if account_signed_in? %>
+          <%= link_to "Sign out", destroy_account_session_path ,method: :delete ,class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Sign in", new_account_session_path, class: "btn btn-primary" %>
+          <%= link_to "Sign up", new_account_registration_path, class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
