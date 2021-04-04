@@ -1,4 +1,4 @@
-<div class="container mt-3 border-bottom">
+<div class="container mt-3">
   <div class="row justify-content-between py-2">
     <div class="col-sm-4">
       <%= link_to "Reddit Clone", root_path, class: "h3" %>
@@ -6,7 +6,17 @@
     <div class="col-sm-4">
       <div class="float-right">
         <% if account_signed_in? %>
-          <%= link_to "Sign out", destroy_account_session_path ,method: :delete ,class: "btn btn-primary" %>
+        <div class="dropdown show">
+          <a class="btn btn-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_account.full_name %>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <%= link_to "Profile", "", class: "dropdown-item" %>
+            <%= link_to "Setting", edit_account_registration_path, class: "dropdown-item" %>
+            <%= link_to "Sign out", destroy_account_session_path ,method: :delete ,class: "dropdown-item" %>
+          </div>
+        </div>
         <% else %>
           <%= link_to "Sign in", new_account_session_path, class: "btn btn-primary" %>
           <%= link_to "Sign up", new_account_registration_path, class: "btn btn-primary" %>

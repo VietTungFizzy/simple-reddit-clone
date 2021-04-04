@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  match "profile/:username" => "public#profile", :via => :get, :as => :profile
   resources :communities do
     resources :posts
   end
