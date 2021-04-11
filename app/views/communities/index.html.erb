@@ -1,1 +1,23 @@
-this is community index
+<div class="row">
+  <div class="col-8">
+    <div class="mt-2">
+      <% @community.each do |c| %>
+        <div class="mb-3 shadow rounded">
+          <div class="card">
+              <div class="pl-2 pt-2">
+                <%= link_to c.name, community_path(c.id) %>
+              </div>
+              <div class="card-body">
+                <%= truncate c.rules, length: 200 %>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="mt-2">
+      <%= link_to "Create new community", new_community_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

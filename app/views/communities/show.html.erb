@@ -1,22 +1,38 @@
-<div>
-  <% if account_signed_in? %>
-    <%= link_to "Create new Post", new_community_post_path(@community), class: "btn btn-primary float-right" %>
-  <% end %>
-
-  <div><%= @community.name %></div>
-  <div><%= @community.rules %></div>
+<div class="row">
+  <div class="col-8">
+    <h1><%= @community.name %></h1>
+  </div>
+  <div class="col-4">
+    <div class="mt-2">
+      <% if @is_subscribed %>
+        <%= link_to "Create new Post", new_community_post_path(@community), class: "btn btn-primary float-right" %>
+      <% else %>
+        <%= render partial: "communities/subscribe", locals: {community_id: @community.id} %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div class="my-3">
-  <% if @posts.size > 0 %>
-    <% @posts.each do |p| %>
-      <div class="card">
-          <div class="pl-2 pt-2">
-            <h5 class="card-title"><%= link_to p.title, community_post_path(@community.id, p.id) %></h5>
-          </div>
-          <p class="card-body"><%= truncate p.body, length: 200 %></p>
-      </div>
+<div class="row">
+  <div class="col-8">
+    <% if @posts.size > 0 %>
+      <% @posts.each do |p| %>
+        <div class="card">
+            <div class="pl-2 pt-2">
+              <h5 class="card-title"><%= link_to p.title, community_post_path(@community.id, p.id) %></h5>
+            </div>
+            <p class="card-body"><%= truncate p.body, length: 200 %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <h5>There are no posts in this community</h5>
     <% end %>
-  <% else %>
-    <h5>There are no posts in this community</h5>
-  <% end %>
+  </div>
+  <div class="col-4">
+    <div class="card p-3">
+      <h4>About this community</h4>
+      <p class="mt-2"><%= @community.summary %></p>
+      <p><%= pluralize @subscriber_count, "member" %></p>
+    </div>
+    <div><%= @community.rules %></div>
+  </div>
 </div>

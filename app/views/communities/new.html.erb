@@ -17,5 +17,9 @@
     <%= label_tag :rules, "Rules", class: "h5" %>
     <%= f.text_area :rules, class: "form-control" %>
   </div>
+  <div class="form-group">
+    <%= label_tag :summary, "Rules", class: "h5" %>
+    <%= f.text_field :summary, class: "form-control" %>
+  </div>
   <%= f.submit "Create" %>
 <% end %>
